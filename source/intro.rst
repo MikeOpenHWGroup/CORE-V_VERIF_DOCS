@@ -164,3 +164,16 @@ Makefiles will always support rules to compile/simulate with these
 tools. Use of other commercial tools is predicated on community interest
 and support.
 
+.. [1]
+   Memory interfaces, Debug&Trace capability, Interrupts, etc.
+
+.. [2]
+   Note that CV32E is not a fork of RI5CY. Rather, the GitHub repository
+   https://github.com/pulp-platform/riscv was moved to
+   https://github.com/openhwgroup/core-v-cores.
+
+.. [3]
+   CV64A is not forks of the Ariane. The GitHub repository
+   https://github.com/pulp-platform/ariane was moved to
+   https://github.com/openhwgroup/core-v-cores.
+

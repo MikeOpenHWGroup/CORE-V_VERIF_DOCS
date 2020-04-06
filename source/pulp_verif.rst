@@ -417,3 +417,32 @@ as above has many benefits:
    not just instruction generation.
 -  Ability to add checks/scoreboarding to any point of the RTL, not just
    the trace output.
+
+.. [4]
+   These assertions are embedded directly in the RTL source code. That
+   is, they are not bound into the RTL from the TB using cross-module
+   references. There does not appear to be an automated mechanism that
+   causes a testcase or regression to fail if one or more of these
+   assertions fire.
+
+.. [5]
+   Derived from the PULP platform SDK.
+
+.. [6]
+   The macro and assembly code shown is for illustrative purposes. The
+   actual macros and testcases are slightly more complex and support
+   debug aids not shown here.
+
+.. [7]
+   **$PROJ_ROOT/cv32/tests/core/riscv_tests/rv64ui/addi.S** in your
+   local copy of the core-v-verif repository.
+
+.. [8]
+   Anyone with access to GitHub will be able to see the coverage results
+   of CORE-V regressions.
+
+.. [9]
+   This does not change the recommendation made earlier in this document
+   to continue developing new testcases on the existing RI5CY testbench
+   in parallel.
+

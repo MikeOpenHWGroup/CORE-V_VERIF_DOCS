@@ -237,3 +237,10 @@ provided by OneSpin Solutions. OneSpin engineers will run either on
 OneSpin’s own compute infrastructure or on the Virtual Machines provided
 by IBM and managed by OpenHW. ACs from other member companies will run
 on the IBM Cloud and use OneSpin tools.
+
+.. [15]
+   First week of January, 2020.
+
+.. [16]
+   OneSpin White paper: Assuring the Integrity of RISC-V Cores and SoCs.
+   OneSpin Solutions, 2019.

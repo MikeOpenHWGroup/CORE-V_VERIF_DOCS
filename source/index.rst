@@ -20,13 +20,5 @@ Editor: **Michael Thompson**
    sim_tests
    formal
    fpga
-   endnotes
+   rev_hist
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

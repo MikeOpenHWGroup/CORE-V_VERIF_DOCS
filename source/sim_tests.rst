@@ -377,3 +377,22 @@ Testcases are intended to be launched from
 intended to provide you with everything you need to know to run an
 existing testcase or a new testcase. If this is not the case, please
 create a GitHub issue and assign it to @mikeopenhwgroup.
+
+.. [11]
+   Those familiar with the RI5CY testbench may recall that random
+   generation of C programs using
+   `csmith <https://embed.cs.utah.edu/csmith/>`__ was supported. Csmith
+   was developed to exercise C compilers, not processors, it is not
+   supported in the CORE-V environments.
+
+.. [12]
+   See Section `6.1.1 <#anchor-12>`__, `below <#anchor-12>`__.
+
+.. [13]
+   Generation of illegal or malformed instructions is also supported,
+   and will be discussed in a later version of this document.
+
+.. [14]
+   This is termed Execution Environment Interface or EEI by the RISC-V
+   ISA.
+
