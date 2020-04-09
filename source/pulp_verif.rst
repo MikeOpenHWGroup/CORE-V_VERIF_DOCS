@@ -1,3 +1,5 @@
+.. _pulp-verif:
+
 PULP-Platform Simulation Verification
 =====================================
 
@@ -8,13 +10,16 @@ informative to consider the on-going Ibex project, another open-source
 RISC-V project derived from the ‘zero-riscy’ PULP-Platform core.
 
 For those without the need or interest to delve into history of these
-projects, Executive Summary below provides a (very) quick summary.
-Sub-sections `3.2 <#anchor-2>`__ and `3.3 <#anchor-3>`__ review the
+projects, the Executive Summary below provides a (very) quick summary.
+Those wanting more background should read the :ref:`ri5cy` and
+:ref:`ariane` sub-sections of this chapter which review the
 status of RI5CY and Ariane testbenches in sufficient detail to provide
-the necessary context for sub-section `4 <#anchor-4>`__ and
-`5 <#anchor-5>`__, which details how the RI5CY and Ariane simulation
+the necessary context for the :ref:`cv32_env` and
+:ref:`cv64_env` chapters, which detail how the RI5CY and Ariane simulation
 environments will be migrated to CV32E and CV64A simulation
 environments.
+
+.. _exec_summary:
 
 Executive Summary
 -----------------
@@ -39,16 +44,20 @@ CV64A. This environment will re-use many of the components developed for
 the CV32E verification environment, and will have the same ability to
 run the RISC-V Compliance test-suite.
 
+.. _ri5cy:
+
 RI5CY
 -----
 
 The following is a discussion of the verification environment, testbench
 and testcases developed for RI5CY.
 
+.. _ri5cy_testbench:
+
 RI5CY Testbench
 ~~~~~~~~~~~~~~~
 
-The verification environment (testbench) for RI5CY is shown in . It is
+The verification environment (testbench) for RI5CY is shown in Illustration 1. It is
 coded entirely in SystemVerilog. The core is instantiated in a wrapper
 that connects it to a memory model. A set of assertions embedded in the
 RTL [4]_ catch things like out-of-range vectors and unknown values on
@@ -62,6 +71,8 @@ terminals and logfiles. Other virtual peripherals include external
 interrupt generators, a ‘perturbation’ capability that injects random
 (legal) cycle delays on the memory bus and test completion flags for the
 testbench.
+
+.. _ri5cy_testcases:
 
 RI5CY Testcases
 ~~~~~~~~~~~~~~~
@@ -264,10 +275,12 @@ maintained as a tool for software developers to try things out, a tool
 for quick-and-easy bug reproduction and a platform for members of the
 open-source community restricted to the use of open-source tools.
 
+.. _ariane:
+
 Ariane
 ------
 
-The verification environment for Ariane is shown in . It is coded
+The verification environment for Ariane is shown in Illustration 2. It is coded
 entirely in SystemVerilog, using more modern syntax than the RI5CY
 environment. As such, it is not possible to use an open source
 SystemVerilog simulator such as Icarus Verilog or Verilator with this
@@ -348,12 +361,11 @@ so it need not be repeated here.
 IBEX Impact on CV32E and CV64A Verification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Ibex verification environment, is well thought-out and crafted UVM verification
-environment.  The flow of the Ibex environment is very close to what
+Illustration 3 is a schematic of the Ibex UVM verification environment.  The
+flow of the Ibex environment is very close to what
 you’d expect to see in a UVM environment: constraints define the instructions in
 the generated program which is fed to both the device-under-test (Ibex core
-RTL model) and a reference model (in this case an Instruction Set
-Simulator provided by Imperas). The resultant output of the RTL and ISS
+RTL model) and an ISS reference model. The resultant output of the RTL and ISS
 are compared to produce a pass/fail result. Functional coverage (not
 shown in the Illustration) is applied to measure whether or not the
 verification goals have been achieved.

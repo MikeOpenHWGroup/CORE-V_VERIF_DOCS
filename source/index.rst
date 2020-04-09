@@ -20,5 +20,4 @@ Editor: **Michael Thompson**
    sim_tests
    formal
    fpga
-   rev_hist
 

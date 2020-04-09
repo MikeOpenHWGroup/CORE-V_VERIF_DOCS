@@ -1,3 +1,5 @@
+.. _planning_requirements:
+
 Verification Planning and Requirements
 ======================================
 
@@ -35,18 +37,24 @@ Base Instruction Set
 
 Privileged Spec
 ---------------
+ToDo
 
 XPULP Instruction Extensions
 ----------------------------
+ToDo
 
 Custom Circuitry
 ----------------
+ToDo
 
 Interrupts
 ----------
+ToDo
 
 Debug
 -----
+ToDo
 
 RVI-Compliant Interface
 -----------------------
+ToDo

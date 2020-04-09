@@ -1,3 +1,5 @@
+.. _sim_tests:
+
 Simulation Tests in the UVM Environments
 ========================================
 
@@ -17,6 +19,8 @@ provide any stimulus at all. This means it is important to draw a
 distinction between the “\ **test program**\ ” which is a set of
 instructions executed by the core, and the “\ **UVM test**\ ”, which is
 a testcase in the UVM sense of the word.
+
+.. _test_program:
 
 Test Program
 ------------
@@ -39,7 +43,7 @@ program:
    own, the pass/fail criteria of a test program and can it signal this
    to the testbench?
 
-Section `3.2.2 <#anchor-7>`__ details how many of the test programs
+Section :ref:`ri5cy_testcases` details how many of the test programs
 inherited from the RI5CY project are both pre-existing and
 self-checking. It is expected, but not required, that most of the
 pre-existing test programs will be self-checking.
@@ -94,13 +98,15 @@ by the core [13]_. Programs have access to the full address range
 supported by the memory model in the testbench plus a small set of
 memory-mapped “virtual peripherals”, see below.
 
+.. _virtual_peripherals:
+
 Virtual Peripherals
 ~~~~~~~~~~~~~~~~~~~
 
-A SystemVerilog module called *mm\_ram* is located at
-*$PROJ\_ROOT/cv32/tb/core/mm\_ram.sv*. It connects to the core as shown
+A SystemVerilog module called *mm_ram* is located at
+*$PROJ_ROOT/cv32/tb/core/mm_ram.sv*. It connects to the core as shown
 in . In additional to supporting the instruction and data memory
-(*dp\_ram*) this module implements a set of virtual peripherals by
+(*dp_ram*) this module implements a set of virtual peripherals by
 responding to write cycles at specific addresses on the data bus. These
 virtual peripherals provides the features listed in .
 
@@ -166,6 +172,8 @@ new test programs developed for CORE-V is strongly discouraged.
 
 Table 1: List of Virtual Peripherals
 
+.. _uvm_test:
+
 UVM Test
 --------
 
@@ -184,7 +192,7 @@ it for their needs.
 A typical UVM test for CORE-V will extend three time consuming tasks:
 
 1. **reset_phase():** often, nothing is done here except to call
-   *super.reset\_phase()* which will invoke the default reset sequence
+   *super.reset_phase()* which will invoke the default reset sequence
    (which is a random sequence). Should the test writer wish to, this is
    where a test-specific reset virtual sequence could be invoked.
 2. **configure_phase():** in a typical UVM environment, this is a busy
@@ -195,9 +203,6 @@ A typical UVM test for CORE-V will extend three time consuming tasks:
 3. **run_phase():** for most tests, this is where the procedural code
    for the test will reside. A typical example of the run-flow here
    would be:
-
--  
-
    -  Raise an objection;
    -  Assert the core’s fetch\_en input;
    -  Wait for the core and/or environment(s) to signal completion;
@@ -206,8 +211,8 @@ A typical UVM test for CORE-V will extend three time consuming tasks:
 Workarounds
 ~~~~~~~~~~~
 
-The CV32E base test, *uvmt\_cv32\_base\_test\_c*, in-lines code (using
-**\`include)** from *uvmt\_cv32\_base\_test\_workaround.sv*. This file
+The CV32E base test, *uvmt_cv32_base_test_c*, in-lines code (using
+**\`include)** from *uvmt_cv32_base_test_workaround.sv*. This file
 is a convenient place to put workarounds for defects or incomplete code
 in either the environment or RTL that will affect all tests. This file
 must be reviewed before the RTL is frozen, and ideally it will be empty
@@ -226,13 +231,13 @@ UVM environment, so the CORE-V UVM environments are implemented to be
 aware of the test program and to respond accordingly as part of the
 run-flow.
 
-Section `6.1 <#anchor-11>`__ introduced the five types of core test
+Section :ref:`test_program` introduced the five types of core test
 programs supported by the CORE UVM environment and section
-`6.2 <#anchor-13>`__ showed how the configure\_phase() and run\_phase()
+:ref:`uvm_test` showed how the configure_phase() and run_phase()
 of a CORE-V UVM run-flow implement the interaction between the UVM
 environment and the test program. This interaction is depends on the
-type of test program. shows how the CORE-V UVM base test supports a type
-1 test program.
+type of test program. Illustration 6 shows how the CORE-V UVM base test
+supports a type 1 test program.
 
 .. figure:: ../images/type1.png
    :name: TYPE1_Test_Program
@@ -243,20 +248,20 @@ type of test program. shows how the CORE-V UVM base test supports a type
    CORE-V UVM test
 
 In the self-checking scenario, the testcase is pre-compiled into machine
-code and loaded into the *dp\_ram* using the **$readmemh()** DPI call.
+code and loaded into the *dp_ram* using the **$readmemh()** DPI call.
 The next sub-section explains how to select which test program to run
 from the command-line. During the configuration phase the test signals
 the TB to load the memory. The TB assumes the test file already exists
 and will terminate the simulation if it does not.
 
-In the run phase the base test will assert the fetch\_en input to the
+In the run phase the base test will assert the fetch_en input to the
 core which signals it to start running. The timing of this is randomized
 but keep in mind that it will always happen after reset is de-asserted
 (because resets are done in the reset phase, which always executes
 before the run phase).
 
 At this point the run flow will simply wait for the test program to flag
-that it is done via the status flags virtual peripheral (see ). The test
+that it is done via the status flags virtual peripheral. The test
 program is also expected to properly assert the test pass or test fail
 flags. Note that the environment will wait for the test flags to asserts
 or until the environment’s watch dog timer fires. A watch-dog firing
@@ -271,10 +276,10 @@ will terminate the simulation and is, by definition, a failure.
    a CORE-V UVM test
 
 The flow for a type 4 (generated, non-self checking) test program is
-only slightly different as shown in . In these tests the configure phase
+only slightly different as shown in Illustration 7. In these tests the configure phase
 will invoke the generator to produce a test program and the toolchain to
 compile it before signalling the TB to load the machine code into
-*dp\_mem*. As before, the run phase will assert fetch\_en to the core
+*dp_mem*. As before, the run phase will assert fetch_en to the core
 and the program begins execution.
 
 Recall that a type 4 test program will not use the status flags virtual
@@ -293,6 +298,7 @@ pass/fail determination.
 
 CORE-V Testcase Writer’s Guide
 ------------------------------
+TODO
 
 File Structure of the Test Programs and UVM Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -302,7 +308,7 @@ The test programs are in cv32/tests/core. (This should probably be
 cv32/tests/programs, but is named “core” for historical reasons.)
 Sub-directories below core contain a number of type 1 test programs.
 
-The UVM tests are located at cv32/tests/uvmt\_cv32. It is a very good
+The UVM tests are located at cv32/tests/uvmt_cv32. It is a very good
 idea to review the code in the base-tests sub-directory. In
 “core-program-tests” is the type 1 and type 4 testcases (types 2 and 3
 may be added at a later date). These ca be used as examples and are also
@@ -348,14 +354,14 @@ This document will probably never include a detailed description for
 writing a test program. The core’s ISA is well documented and the
 execution environment supported by the testbench is trivial. The best
 thing to do is check out the examples at
-**$PROJ\_ROOT/cv32/tests/core**.
+**$PROJ_ROOT/cv32/tests/core**.
 
 Writing a UVM Test to run a Test Program
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The CV32 base test, *uvmt\_cv32\_base\_test\_c*, has been written to
+The CV32 base test, *uvmt_cv32_base_test_c*, has been written to
 support all five of the test program types discussed in Section
-`6.1 <#anchor-11>`__.
+:ref:`test_program`.
 
 There are pre-existing UVM tests for type 1 (pre-existing,
 self-checking) and type 4 (generated, not-self-checking) tests for
@@ -365,7 +371,7 @@ test, have a look at these and it should be obvious what to do.
 Testcase Scriptware
 ^^^^^^^^^^^^^^^^^^^
 
-At **$PROJ\_ROOT/cv32/tests/uvmt\_cv32/bin/test\_template** you will
+At **$PROJ_ROOT/cv32/tests/uvmt_cv32/bin/test_template** you will
 find a shell script that will generate the shell of a testcase that is
 compatible with the base test. This will save you a bit of typing.
 
@@ -373,7 +379,7 @@ Running the testcase
 ~~~~~~~~~~~~~~~~~~~~
 
 Testcases are intended to be launched from
-**$PROJ\_ROOT/cv32/sim/uvmt\_cv32**. The README at this location is
+**$PROJ_ROOT/cv32/sim/uvmt_cv32**. The README at this location is
 intended to provide you with everything you need to know to run an
 existing testcase or a new testcase. If this is not the case, please
 create a GitHub issue and assign it to @mikeopenhwgroup.
@@ -386,7 +392,7 @@ create a GitHub issue and assign it to @mikeopenhwgroup.
    supported in the CORE-V environments.
 
 .. [12]
-   See Section `6.1.1 <#anchor-12>`__, `below <#anchor-12>`__.
+   See Section :ref:`virtual_peripherals`.
 
 .. [13]
    Generation of illegal or malformed instructions is also supported,

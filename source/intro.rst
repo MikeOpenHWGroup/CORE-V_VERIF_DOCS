@@ -115,7 +115,7 @@ PULP-Platform’s zero-riscy core.
 This is germane to this discussion because the architecture and
 implement of the verification environments for both CV32E and CV64A are
 strongly influenced by the development history of these cores. This is
-discussed in more detailed in Section `3 <#anchor>`__.
+discussed in more detailed in :ref:`pulp-verif`.
 
 Unless otherwise noted, the “previous generation” verification
 environments discussed in this document come from one of the following

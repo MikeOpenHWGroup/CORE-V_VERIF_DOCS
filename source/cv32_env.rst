@@ -1,7 +1,10 @@
+.. _cv32_env:
+
 CV32E40P Simulation Testbench and Environment
 =============================================
 
-As stated in sub-section `3.1 <#anchor-6>`__, CV32E40P verification will
+As stated in the :ref:`pulp-verif` chapter (in the :ref:`exec_summary`),
+CV32E40P verification will
 follow a two-pronged approach using an updated RI5CY testbench,
 hereafter referred to as the core testbench in parallel with the
 development of a UVM environment. The UVM environment will be developed
@@ -16,8 +19,7 @@ those developed by the RISC-V Compliance Task Group.
 
 The end-goal is to have a single UVM-based verification environment
 capable of complete CV32E40P and CV32E40 verification. This environment
-will be rolled out in three phases are detailed in sub-section
-`4.2 <#anchor-9>`__.
+will be rolled out in three phases as detailed below.
 
 Core Testbench
 --------------
@@ -45,10 +47,6 @@ The testbench has been (or will be) modified in the following ways:
 5. (TBD) Updates to the end-of-simulation flags in the Virtual
    Peripherals.
 
-As mentioned in `A Note About EDA Tools <#anchor-1>`__,
-`above <#anchor-1>`__, currently this testbench compiles and runs under
-Verilator. Continued support for Verilator is not assured.
-
 The CV32E40\* UVM Verification Environment
 ------------------------------------------
 
@@ -71,7 +69,7 @@ Recall from the structure of the core testbench. Swapping out the RI5CY
 RTL model for the CV32E40P RTL model, and adding SystemVerilog
 interfaces yields the testbench components for the phase 1 environment.
 Rounding out the environment is a minimal UVM environment and UVM base
-test. This is shown in .
+test. This is shown in Illustration 4.
 
 .. figure:: ../images/CV32E_VE_phase1.png
    :name: cv32_env_phase1
@@ -99,7 +97,7 @@ Makefiles used to control compilation and execution of testcases.
 Phase 2 Environment
 ~~~~~~~~~~~~~~~~~~~
 
-The phase two environment is shown in . Phase 2 introduces the `Google
+The phase two environment is shown in Illustration 5. Phase 2 introduces the `Google
 Random Instruction Generator <https://github.com/google/riscv-dv>`__ and
 the `Imperas
 ISS <http://www.imperas.com/articles/imperas-empowers-riscv-community-with-riscvovpsim>`__
