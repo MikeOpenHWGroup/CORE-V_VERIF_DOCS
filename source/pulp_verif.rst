@@ -134,7 +134,7 @@ Each of the sub-directories contains one or more assembly source
 programs to exercise a given instruction. For example the code segments
 above were drawn from the **addi.S**\  [7]_, a program that exercises
 the *add immediate* instruction. The testcase exercises the addi
-instruction with a set of 24 calls to *TEST\_\** macros as shown above.
+instruction with a set of 24 calls to **TEST_** macros as shown above.
 
 There are 217 such tests in the repository. Of these the integer,
 compressed and multiple/divide instructions total 65 unique tests.
@@ -142,9 +142,9 @@ compressed and multiple/divide instructions total 65 unique tests.
 RISC-V Compliance Tests
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-There are 56 assembly language tests in the\ **
-riscv\_compliance\_tests** directory. It appears that that these are a
-clone of a past version of the RISC-V compliance test-suite.
+There are 56 assembly language tests in the **riscv_compliance_tests**
+directory. It appears that that these are a clone of a past version of
+the RISC-V compliance test-suite.
 
 Firmware Tests
 ^^^^^^^^^^^^^^
