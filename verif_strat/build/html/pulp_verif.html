@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PULP-Platform Simulation Verification &mdash; CORE-V Verification Strategy  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CV32E40P Simulation Testbench and Environment" href="cv32_env.html" />
+    <link rel="prev" title="Verification Planning and Requirements" href="planning_requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CORE-V Verification Strategy
+          
+
+          
+            
+            <img src="_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planning_requirements.html">Verification Planning and Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PULP-Platform Simulation Verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#executive-summary">Executive Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ri5cy">RI5CY</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ri5cy-testbench">RI5CY Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ri5cy-testcases">RI5CY Testcases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#risc-v-tests">RISC-V Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#risc-v-compliance-tests">RISC-V Compliance Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#firmware-tests">Firmware Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comments-and-recommendations-for-cv32e-verification">Comments and Recommendations for CV32E Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ariane">Ariane</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ariane-testcases">Ariane Testcases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comments-and-recommendations-for-cv64a-verification">Comments and Recommendations for CV64A Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ibex">IBEX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ibex-impact-on-cv32e-and-cv64a-verification">IBEX Impact on CV32E and CV64A Verification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cv32_env.html">CV32E40P Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cv64_env.html">CV64A Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sim_tests.html">Simulation Tests in the UVM Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formal.html">CORE-V Formal Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fpga.html">CORE-V FPGA Prototyping</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CORE-V Verification Strategy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>PULP-Platform Simulation Verification</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pulp_verif.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pulp-platform-simulation-verification">
+<span id="pulp-verif"></span><h1>PULP-Platform Simulation Verification<a class="headerlink" href="#pulp-platform-simulation-verification" title="Permalink to this headline">¶</a></h1>
+<p>Before discussing the verification strategy of the CV32E and CV64A, we
+need to consider the starting point provided to OpenHW by the RI5CY
+(CV32E) and Ariane (CV64A) cores from PULP-Platform. It is also
+informative to consider the on-going Ibex project, another open-source
+RISC-V project derived from the ‘zero-riscy’ PULP-Platform core.</p>
+<p>For those without the need or interest to delve into history of these
+projects, the Executive Summary below provides a (very) quick summary.
+Those wanting more background should read the <a class="reference internal" href="#ri5cy"><span class="std std-ref">RI5CY</span></a> and
+<a class="reference internal" href="#ariane"><span class="std std-ref">Ariane</span></a> sub-sections of this chapter which review the
+status of RI5CY and Ariane testbenches in sufficient detail to provide
+the necessary context for the <a class="reference internal" href="cv32_env.html#cv32-env"><span class="std std-ref">CV32E40P Simulation Testbench and Environment</span></a> and
+<a class="reference internal" href="cv64_env.html#cv64-env"><span class="std std-ref">CV64A Simulation Testbench and Environment</span></a> chapters, which detail how the RI5CY and Ariane simulation
+environments will be migrated to CV32E and CV64A simulation
+environments.</p>
+<div class="section" id="executive-summary">
+<span id="exec-summary"></span><h2>Executive Summary<a class="headerlink" href="#executive-summary" title="Permalink to this headline">¶</a></h2>
+<p>In the case of the CV32E, we have an existing testbench developed for
+RI5CY. This testbench is useful, but insufficient to execute a complete,
+industrial grade pre-silicon verification and achieve the goal of
+‘production ready’ RTL. Therefore, a two-pronged approach will be
+followed whereby the existing RI5CY testbench will be updated to create
+a CV32E40P “core” testbench. New testcases will be developed for this
+core testbench in parallel with the development of a single UVM
+environment capable of supporting the existing RI5CY testcases and fully
+verifying the CV32E cores. The UVM environment will be loosely based on
+the verification environment developed for the Ibex core and will also
+be able to run hand-coded code-segments (programs) such as those
+developed by the RISC-V Compliance Task Group.</p>
+<p>In the case of CV64A, the existing verification environment developed
+for Ariane is not yet mature enough for OpenHW to use. The
+recommendation here is to build a UVM environment from scratch for the
+CV64A. This environment will re-use many of the components developed for
+the CV32E verification environment, and will have the same ability to
+run the RISC-V Compliance test-suite.</p>
+</div>
+<div class="section" id="ri5cy">
+<span id="id1"></span><h2>RI5CY<a class="headerlink" href="#ri5cy" title="Permalink to this headline">¶</a></h2>
+<p>The following is a discussion of the verification environment, testbench
+and testcases developed for RI5CY.</p>
+<div class="section" id="ri5cy-testbench">
+<span id="id2"></span><h3>RI5CY Testbench<a class="headerlink" href="#ri5cy-testbench" title="Permalink to this headline">¶</a></h3>
+<p>The verification environment (testbench) for RI5CY is shown in Illustration 1. It is
+coded entirely in SystemVerilog. The core is instantiated in a wrapper
+that connects it to a memory model. A set of assertions embedded in the
+RTL <a class="footnote-reference" href="#id11" id="id3">[4]</a> catch things like out-of-range vectors and unknown values on
+control data. The testbench memory model supports I and D address spaces
+plus a memory mapped address space for a set of virtual peripherals. The
+most useful of these is a virtual printer that provides something akin
+to a “hardware printf” capability such that when the core writes ASCII
+data to a specific memory location it is written to stdout. In this way,
+programs running on the core can write human readable messages to
+terminals and logfiles. Other virtual peripherals include external
+interrupt generators, a ‘perturbation’ capability that injects random
+(legal) cycle delays on the memory bus and test completion flags for the
+testbench.</p>
+</div>
+<div class="section" id="ri5cy-testcases">
+<span id="id4"></span><h3>RI5CY Testcases<a class="headerlink" href="#ri5cy-testcases" title="Permalink to this headline">¶</a></h3>
+<p>Testcases are written as C and/or RISC-V assembly-language programs
+which are compiled/linked using a light SDK developed to support these
+test <a class="footnote-reference" href="#id12" id="id5">[5]</a>. The SDK is often referred to as the “toolchain”. These
+testcases are all self-checking. That is, the pass/fail determination is
+made by the testcase itself as the testbench lacks any real intelligence
+to find errors. The goal of each testcase is to demonstrate correct
+functionality of a specific instruction in the ISA. There are no
+specific testcases targeting features of the core’s micro-architecture.</p>
+<p>A typical testcase is written using a set of macros similar to
+<strong>TEST_IMM_OP</strong> <a class="footnote-reference" href="#id13" id="id6">[6]</a> as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># instruction under test: addi</span>
+<span class="c1"># result op1 op2</span>
+<span class="n">TEST_IMM_OP</span><span class="p">(</span><span class="n">addi</span><span class="p">,</span> <span class="mh">0x0000000a</span><span class="p">,</span> <span class="mh">0x00000003</span><span class="p">,</span> <span class="mh">0x007</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This macro expands to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">li</span>   <span class="n">x1</span><span class="p">,</span>  <span class="mh">0x00000003</span><span class="p">;</span>        <span class="c1"># x1 = 0x3</span>
+<span class="n">addi</span> <span class="n">x14</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span>        <span class="mh">0x007</span><span class="p">;</span>  <span class="c1"># x14 = x1 + 0x7</span>
+<span class="n">li</span>   <span class="n">x29</span><span class="p">,</span> <span class="mh">0x0000000a</span><span class="p">;</span>        <span class="c1"># x29 = 0xA</span>
+<span class="n">bne</span>  <span class="n">x14</span><span class="p">,</span> <span class="n">x29</span><span class="p">,</span>       <span class="n">fail</span><span class="p">;</span>   <span class="c1"># if ([x14] != [x29]) fail</span>
+</pre></div>
+</div>
+<p>Note that the GPRs used by a given macro are fixed. That is, the
+<em>TEST_IMM_OP</em> macro will always use x1, x14 and x29 as destination
+registers.</p>
+<div class="figure align-center" id="ri5cy-tb">
+<img alt="_images/ri5cy_tb.png" src="_images/ri5cy_tb.png" />
+<p class="caption"><span class="caption-text">Illustration 1: RI5CY Testbench</span></p>
+</div>
+<p>The testcases are broadly divided into two categories, <strong>riscv_tests</strong> and
+<strong>riscv_compliance_tests</strong>. In the RI5CY repository these were located in
+the <em>tb/core/riscv_tests</em> and <em>tb/core/ riscv_compliance_tests</em>
+respectively. By cloning the
+<a class="reference external" href="https://github.com/openhwgroup/core-v-verif">core-v-verif</a>
+repository, these original RI5CY tests can be found at
+<em>$PROJ_ROOT/cv32/tests/core/riscv_tests</em> and
+<em>$PROJ_ROOT/cv32/tests/core/riscv_compliance_tests</em>.  Updated versions of these
+tests for CV32 are located at <em>$PROJ_ROOT/cv32/tests/core/cv32_riscv_tests</em> and
+<em>$PROJ_ROOT/cv32/tests/core/cv32_riscv_compliance_tests</em>.</p>
+<div class="section" id="risc-v-tests">
+<h4>RISC-V Tests<a class="headerlink" href="#risc-v-tests" title="Permalink to this headline">¶</a></h4>
+<p>This directory has sub-directories for many of the instruction types
+supported by RISC-V cores. According to the README, only those testcases
+for integer instructions, compressed instructions and multiple/divide
+instructions are in active development. It is not clear how much
+coverage the PULP defined ISA extensions have received.</p>
+<p>Each of the sub-directories contains one or more assembly source
+programs to exercise a given instruction. For example the code segments
+above were drawn from the <strong>addi.S</strong> <a class="footnote-reference" href="#id14" id="id7">[7]</a>, a program that exercises
+the <em>add immediate</em> instruction. The testcase exercises the addi
+instruction with a set of 24 calls to <strong>TEST_</strong> macros as shown above.</p>
+<p>There are 217 such tests in the repository. Of these the integer,
+compressed and multiple/divide instructions total 65 unique tests.</p>
+</div>
+<div class="section" id="risc-v-compliance-tests">
+<h4>RISC-V Compliance Tests<a class="headerlink" href="#risc-v-compliance-tests" title="Permalink to this headline">¶</a></h4>
+<p>There are 56 assembly language tests in the <strong>riscv_compliance_tests</strong>
+directory. It appears that that these are a clone of a past version of
+the RISC-V compliance test-suite.</p>
+</div>
+<div class="section" id="firmware-tests">
+<h4>Firmware Tests<a class="headerlink" href="#firmware-tests" title="Permalink to this headline">¶</a></h4>
+<p>There are a small set of C programs in the <em>firmware</em> directory. The
+ability to compile small stand-alone programs in C and run them on a RTL
+model of the core is a valuable demonstration capability, and will be
+supported by the CORE-V verification environments. These tests will not
+be used for actual RTL verification as it is difficult to attribute
+specific goals such as feature, functional or code coverage to such
+tests.</p>
+</div>
+</div>
+<div class="section" id="comments-and-recommendations-for-cv32e-verification">
+<h3>Comments and Recommendations for CV32E Verification<a class="headerlink" href="#comments-and-recommendations-for-cv32e-verification" title="Permalink to this headline">¶</a></h3>
+<p>The RI5CY verification environment has several attractive attributes:</p>
+<ol class="arabic simple">
+<li>It exists and it runs. The value of a working environment is
+significant as they all require many person-months of effort to
+create.</li>
+<li>It is simple and straightforward.</li>
+<li>The ‘perturbation’ virtual peripheral is a clever idea that will
+significantly increase coverage and increase the probability of
+finding corner-case bugs.</li>
+<li>Software developers that are familiar with RISC-V assembler and its
+associated tool-chain can develop testcases for it with little or no
+ramp-up time.</li>
+<li>Any testcase developed for the RI5CY verification environment can run
+on real hardware with only minor modification (maybe none).</li>
+<li>It runs with Verilator, an open-source SystemVerilog simulator. This
+is not a requirement for the OpenHW Group or its member companies,
+but it may be an attractive feature nonetheless.</li>
+</ol>
+<p>Having said that the RI5CY verification environment has several
+shortcomings:</p>
+<ol class="lowerroman simple">
+<li>All of the intelligence is in the testcases. A consequence of this
+is that achieving full coverage of the core will require a
+significant amount of testcase writing.</li>
+<li>All testcase are directed-tests. That is, they are the same every
+time they run. By definition only the stimulus we think about will
+be run and only the bugs we can imagine will be found. Experience
+shows that this is a high-risk approach to functional
+verification.</li>
+<li>Testcases focuses on only ISA with no attention paid to
+micro-architecture features and non-core features such as
+interrupts and debug.</li>
+<li>Stimulus generation and response checking is 100% manual.</li>
+<li>The performance counters are not verified.</li>
+<li>The FPU is not instantiated, so it is not clear if it was ever
+tested in the context of the core.</li>
+<li>All testing is success-based – there are no tests for things such
+as illegal instructions or incorrectly formatted instructions.</li>
+<li>There is no functional coverage model, and code coverage data has
+not been collected.</li>
+<li>Some of the features of the testbench, such as the ‘perturbation’
+virtual peripheral on the memory interface are not used by
+Verilator as the perturbation model uses SystemVerilog constructs
+that Verilator does not support.</li>
+<li>Randomization of the ‘perturbation’ virtual peripheral on the
+memory interface is not controllable by a testcase.</li>
+</ol>
+<p>So, much work remains to be done, and the effort to scale the existing
+RI5CY verification environment and testcases to ‘production ready’ CV32E
+RTL is not warranted given the shortcomings of the approach taken. It is
+therefore recommended to replace this verification environment with a
+UVM compliant environment with the following attributes:</p>
+<ol class="loweralpha simple">
+<li>Structure modelled after the verification environment used for the
+low-RISC Ibex core (see Section <a class="reference external" href="#anchor-8">3.4</a> in this
+document).</li>
+<li>UVM environment class supporting the complete UVM run-flow and
+messaging service (logger).</li>
+<li>Constrained-random stimulus of inst ructions using a UVM
+sequence-item generator. An example is the <a class="reference external" href="https://content.riscv.org/wp-content/uploads/2018/12/14.25-Tao-Liu-Richard-Ho-UVM-based-RISC-V-Processor-Verification-Platform.pdf">Google RISC-V instruction
+generator</a>.</li>
+<li>Prediction of execution results using a reference model built into
+the environment, not the individual testcases. Imperas has an
+open-source ISS that could be used for this component.</li>
+<li>Scoreboarding to compare results from both the reference model and
+the RTL.</li>
+<li>Functional coverage and code coverage to ensure complete verification
+of the core.</li>
+</ol>
+<p>Its important to emphasize here that the the goal is to have a single
+verification environment capable of both compliance testing, using the
+model developed for the RI5CY verification environment, and
+constrained-random tests as per a typical UVM environment. Once this
+capability is in place, the existing RI5CY verification environment will
+be retired altogether.</p>
+<p>Developing such a UVM environment is a significant task that can be
+expected to require up to six engineer-months of effort to complete.
+This need not be done by a single AC, so the calendar time to get a UVM
+environment up and running for the core will be in the order of two to
+three months. This document outlines a strategy for developing and
+deploying the UVM environment for CV32E in sub-section
+<a class="reference external" href="#anchor-4">4</a>.</p>
+<p>The rationale for undertaking such a task is twofold:</p>
+<ol class="arabic simple">
+<li>A full UVM environment is the shortest path to achieving the goals of
+the OpenHW Group. A UVM based constrained-stimulus, coverage driven
+environment is scale-able and will have measurable goals which can be
+easily tracked so that all member companies can see the effort’s
+status in real-time <a class="footnote-reference" href="#id15" id="id8">[8]</a>. The overall effort will be reduced via
+testcase automation and the probability of finding corner-case bugs
+will be greatly enhanced.</li>
+<li>The ability to run processor-driven, self-checking testcases written
+in assembly or C, maintains the ability to run the compliance
+test-suite. Also, this scheme is common practice within the RISC-V
+community and such support will be expected by many users of the
+verification environment, particularly software developers. Note that
+such tests can be difficult to debug if the self check indicates an
+error, but, for a more “mature” core design, such as the CV32E
+(RI5CY) and CV64A (Ariane) they can provide a useful way to run
+‘quick-and-dirty’ checks of specific core features.</li>
+</ol>
+<p>Waiting for two to three months for RI5CY core verification to re-start
+is not practical given the OpenHW Group goals. Instead, a two-pronged
+approach which sees new testcases developed for the existing testbench
+in parallel with the development of the UVM environment is recommended.
+This is a good approach because it allows CORE-V verification to make
+early progress. When the CV32E UVM environment exceeds the capability of
+the RI5CY environment, the bulk of the verification effort will
+transition to the UVM environment. The RI5CY environment can be
+maintained as a tool for software developers to try things out, a tool
+for quick-and-easy bug reproduction and a platform for members of the
+open-source community restricted to the use of open-source tools.</p>
+</div>
+</div>
+<div class="section" id="ariane">
+<span id="id9"></span><h2>Ariane<a class="headerlink" href="#ariane" title="Permalink to this headline">¶</a></h2>
+<p>The verification environment for Ariane is shown in Illustration 2. It is coded
+entirely in SystemVerilog, using more modern syntax than the RI5CY
+environment. As such, it is not possible to use an open source
+SystemVerilog simulator such as Icarus Verilog or Verilator with this
+core.</p>
+<p>The Ariane testbench is much more complex than the RI5CY testbench. It
+appears that the Ariane project targets an FPGA implementation with
+several open and closed source peripherals and the testbench supports a
+verification environment that can be used to exercise the FPGA
+implementation, including peripherals as well as the Ariane core itself.</p>
+<div class="figure align-center" id="ariane-testbench">
+<img alt="_images/ariane_tb.png" src="_images/ariane_tb.png" />
+<p class="caption"><span class="caption-text">Illustration 2: Ariane Testbench</span></p>
+</div>
+<div class="section" id="ariane-testcases">
+<h3>Ariane Testcases<a class="headerlink" href="#ariane-testcases" title="Permalink to this headline">¶</a></h3>
+<p>A quick review of the Ariane development tree in GitHub shows that there
+are no testcases for the Ariane core. In response to a query to
+Davide Schiavone, the following information was provided
+by Florian Zaruba, the current maintainer of Ariane:</p>
+<p><em>There are no specific testcases for Ariane. The Ariane environment runs
+cloned versions of the official RISC-V test-suite in simulation. In
+addition, Ariane boots Linux on FPGA prototype and also in a multi core
+configuration.</em></p>
+<p>So, the (very) good news is that the Ariane core has been subjected to
+basic verification and extensive exercising in the FPGA prototype. The
+not-so-good news is that CV64A lacks a good starting point for its
+verification efforts.</p>
+</div>
+<div class="section" id="comments-and-recommendations-for-cv64a-verification">
+<h3>Comments and Recommendations for CV64A Verification<a class="headerlink" href="#comments-and-recommendations-for-cv64a-verification" title="Permalink to this headline">¶</a></h3>
+<p>Given that the focus of the Ariane verification environment is based on
+a specific FPGA implementation that the OpenHW Group is unlikely to use
+and the lack of a library of existing testcases, it is recommended that
+a new UVM-based verification environment be developed for CV64A. This
+would be a core-based verification environment as is envisioned for
+CV32E and not the mini-SoC environment currently used by Ariane.</p>
+<p>At the time of this writing it is not known if the UVM environment
+envisioned for CV32E can be easily extended for CV64A, thereby allowing
+a single environment to support both, or completely independent
+environments for CV32E and CV64A will be required.</p>
+</div>
+</div>
+<div class="section" id="ibex">
+<h2>IBEX<a class="headerlink" href="#ibex" title="Permalink to this headline">¶</a></h2>
+<p>Strictly speaking, the Ibex is not a PULP-Platform project. According to
+the README.md at the Ibex GitHub page, this core was initially developed
+as part of the <a class="reference external" href="https://www.pulp-platform.org/">PULP platform</a> under
+the name “Zero-riscy”, and was contributed to
+<a class="reference external" href="https://www.lowrisc.org/">lowRISC</a> who now maintains and develops
+it. As of this writing, Ibex is under active development, with on-going
+code cleanups, feature additions, and verification planned for the
+future. From a verification perspective, the
+<a class="reference external" href="https://github.com/lowRISC/ibex">Ibex</a> core is the most mature of
+the three cores discussed in this section.</p>
+<p>Ibex is not a member of the CORE-V family of cores, and as such the
+OpenHW Group is not planning to verify this core on its own. However,
+the Ibex verification environment is the most mature of the three cores
+discussed here and its structure and implementation is the closest to
+the UVM constrained-random, coverage driven environment envisioned for
+CV32E and CV64A.</p>
+<p>The documentation associated with the Ibex core is the most mature of
+the three cores discussed and this is also true for the <a class="reference external" href="https://ibex-core.readthedocs.io/en/latest/verification.html">Ibex
+verification
+environment</a>,
+so it need not be repeated here.</p>
+<div class="section" id="ibex-impact-on-cv32e-and-cv64a-verification">
+<h3>IBEX Impact on CV32E and CV64A Verification<a class="headerlink" href="#ibex-impact-on-cv32e-and-cv64a-verification" title="Permalink to this headline">¶</a></h3>
+<p>Illustration 3 is a schematic of the Ibex UVM verification environment.  The
+flow of the Ibex environment is very close to what
+you’d expect to see in a UVM environment: constraints define the instructions in
+the generated program which is fed to both the device-under-test (Ibex core
+RTL model) and an ISS reference model. The resultant output of the RTL and ISS
+are compared to produce a pass/fail result. Functional coverage (not
+shown in the Illustration) is applied to measure whether or not the
+verification goals have been achieved.</p>
+<p>As shown in the Illustration, the Ibex verification environment is a set
+of five distinct processes which are combined together by script-ware to
+produce the flow above:</p>
+<ol class="arabic simple">
+<li>An SV/UVM simulation of the Instruction Set Generator. This produces
+a RISC-V assembly program in source format. The program is produced
+according to a set of input constraints.</li>
+<li>A compiler that translates the source into an ELF and then to a
+binary memory image that can be executed directly by the Core and/or
+ISS.</li>
+<li>An ISS simulation.</li>
+<li>A second SV/UVM simulation, this time of the core itself.</li>
+<li>Once the ISS and RTL complete their simulations, a comparison script
+is run to check for differences.</li>
+</ol>
+<div class="figure align-center" id="ibex-ve">
+<img alt="" src="_images/ibex-ve.png" />
+<p class="caption"><span class="caption-text">Illustration 3: Ibex Verification Environment</span></p>
+</div>
+<p>This is an excellent starting point for the CV32E verification
+environment and our first step shall be to clone the Ibex environment
+and get it running against the CV32E <a class="footnote-reference" href="#id16" id="id10">[9]</a>. Immediately following, an
+effort will be undertaken to integrate the existing generator, compiler,
+ISS and RTL into a single UVM verification environment. It is known that
+the compiler and ISS are coded in C/C++ so these components will be
+integrated using the SystemVerilog DPI. A new scoreboarding component to
+compare results from the ISS and RTL models will be required. It is
+expected that the <em>uvm_scoreboard</em> base class from the UVM library will
+be sufficient to meet the requirements of the CV32E and CV64A
+environments with little or no extension.</p>
+<p>Refactoring the existing Ibex environment into a single UVM environment
+as above has many benefits:</p>
+<ul class="simple">
+<li>Run-time efficiency. Testcases running in the existing Ibex
+environment must run to completion, regardless of the pass/fail
+outcome and regardless of when an error occurs. A typical simulation
+will terminate after only a few errors (maybe only one) because once
+the environment has detected a failure it does not need to keep
+running. This is particularly true for large regressions with lots of
+long tests and develop/debug cycles. In both cases simulation time is
+wasted on a simulation that has already failed.</li>
+<li>Easier to debug failing simulations:<ul>
+<li>Informational and error messages can be added in-place and will
+react at the time an event or error occurs in the simulation.</li>
+<li>Simulations can be configured to terminate immediately after an
+error.</li>
+</ul>
+</li>
+<li>Easier to maintain.</li>
+<li>Integrated testcases with single-point-of-control for all aspects of
+the simulation.</li>
+<li>Ability to add functional coverage to any point of the simulation,
+not just instruction generation.</li>
+<li>Ability to add checks/scoreboarding to any point of the RTL, not just
+the trace output.</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[4]</a></td><td>These assertions are embedded directly in the RTL source code. That
+is, they are not bound into the RTL from the TB using cross-module
+references. There does not appear to be an automated mechanism that
+causes a testcase or regression to fail if one or more of these
+assertions fire.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Derived from the PULP platform SDK.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>The macro and assembly code shown is for illustrative purposes. The
+actual macros and testcases are slightly more complex and support
+debug aids not shown here.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td><strong>$PROJ_ROOT/cv32/tests/core/riscv_tests/rv64ui/addi.S</strong> in your
+local copy of the core-v-verif repository.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>Anyone with access to GitHub will be able to see the coverage results
+of CORE-V regressions.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[9]</a></td><td>This does not change the recommendation made earlier in this document
+to continue developing new testcases on the existing RI5CY testbench
+in parallel.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cv32_env.html" class="btn btn-neutral float-right" title="CV32E40P Simulation Testbench and Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="planning_requirements.html" class="btn btn-neutral float-left" title="Verification Planning and Requirements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, OpenHW Group
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

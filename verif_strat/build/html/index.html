@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenHW Group CORE-V Verification Strategy &mdash; CORE-V Verification Strategy  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+          
+
+          
+            <a href="#" class="icon icon-home"> CORE-V Verification Strategy
+          
+
+          
+            
+            <img src="_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planning_requirements.html">Verification Planning and Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_verif.html">PULP-Platform Simulation Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cv32_env.html">CV32E40P Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cv64_env.html">CV64A Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sim_tests.html">Simulation Tests in the UVM Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formal.html">CORE-V Formal Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fpga.html">CORE-V FPGA Prototyping</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">CORE-V Verification Strategy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>OpenHW Group CORE-V Verification Strategy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="openhw-group-core-v-verification-strategy">
+<h1>OpenHW Group CORE-V Verification Strategy<a class="headerlink" href="#openhw-group-core-v-verification-strategy" title="Permalink to this headline">¶</a></h1>
+<p>Editor: <strong>Michael Thompson</strong>
+<a class="reference external" href="mailto:mike&#37;&#52;&#48;openhwgroup&#46;org?subject=CORE-V%20Verification%20Strategy">mike<span>&#64;</span>openhwgroup<span>&#46;</span>org</a></p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#definition-of-terms">Definition of Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#conventions-used-in-this-document">Conventions Used in this Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#core-v-genealogy">CORE-V Genealogy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#a-note-about-eda-tools">A Note About EDA Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="planning_requirements.html">Verification Planning and Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#base-instruction-set">Base Instruction Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#privileged-spec">Privileged Spec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#xpulp-instruction-extensions">XPULP Instruction Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#custom-circuitry">Custom Circuitry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#interrupts">Interrupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#debug">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planning_requirements.html#rvi-compliant-interface">RVI-Compliant Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_verif.html">PULP-Platform Simulation Verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pulp_verif.html#executive-summary">Executive Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pulp_verif.html#ri5cy">RI5CY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pulp_verif.html#ariane">Ariane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pulp_verif.html#ibex">IBEX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cv32_env.html">CV32E40P Simulation Testbench and Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cv32_env.html#core-testbench">Core Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv32_env.html#the-cv32e40-uvm-verification-environment">The CV32E40* UVM Verification Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv32_env.html#file-structure-and-organization">File Structure and Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cv64_env.html">CV64A Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sim_tests.html">Simulation Tests in the UVM Environments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sim_tests.html#test-program">Test Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim_tests.html#uvm-test">UVM Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim_tests.html#run-flow-in-a-core-v-test">Run-flow in a CORE-V Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim_tests.html#core-v-testcase-writers-guide">CORE-V Testcase Writer’s Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="formal.html">CORE-V Formal Verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="formal.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formal.html#formal-core-v-isa-specifications">Formal CORE-V ISA Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formal.html#work-items">Work Items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formal.html#formal-verification-workflow">Formal Verification Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fpga.html">CORE-V FPGA Prototyping</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, OpenHW Group
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

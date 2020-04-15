@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Verification Planning and Requirements &mdash; CORE-V Verification Strategy  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PULP-Platform Simulation Verification" href="pulp_verif.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CORE-V Verification Strategy
+          
+
+          
+            
+            <img src="_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Verification Planning and Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-instruction-set">Base Instruction Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#privileged-spec">Privileged Spec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xpulp-instruction-extensions">XPULP Instruction Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-circuitry">Custom Circuitry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interrupts">Interrupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rvi-compliant-interface">RVI-Compliant Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_verif.html">PULP-Platform Simulation Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cv32_env.html">CV32E40P Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cv64_env.html">CV64A Simulation Testbench and Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sim_tests.html">Simulation Tests in the UVM Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formal.html">CORE-V Formal Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fpga.html">CORE-V FPGA Prototyping</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CORE-V Verification Strategy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Verification Planning and Requirements</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/planning_requirements.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="verification-planning-and-requirements">
+<span id="planning-requirements"></span><h1>Verification Planning and Requirements<a class="headerlink" href="#verification-planning-and-requirements" title="Permalink to this headline">¶</a></h1>
+<p>A key activity of any verification effort is to capture a Verification
+Plan (aka Test Plan or just testplan). This document is not that. The
+purpose of a verification plan is to identify what features need to be
+verified; the success criteria of the feature and the coverage metrics
+for testing the feature. At the time of this writing the verification
+plan for the CV32E40P is under active development. It is located in the
+core-v-verif GitHub repository at
+<a class="reference external" href="https://github.com/openhwgroup/core-v-docs/tree/master/verif/CV32E40P/VerificationPlan">https://github.com/openhwgroup/core-v-docs/tree/master/verif/CV32E40P/VerificationPlan</a>.</p>
+<p>The Verification Strategy (this document) exists to support the
+Verification Plan. A trivial example illustrates this point: the
+CV32E40P verification plan requires that all RV32I instructions be
+generated and their results checked. Obviously, the testbench needs to
+have these capabilities and its the purpose of the Verification Strategy
+document to explain how that is done. Further, an AC will be required to
+implement the testbench code that supports generation of RV32I
+instructions and checking of results, and this document defines how
+testbench and testcase development is done for the OpenHW projects.</p>
+<p>The subsections below summarize the specific features of the CV32E40*
+verification environment as identified in the Verification Plan. It will
+be updated as the verification plan is completed.</p>
+<div class="section" id="base-instruction-set">
+<h2>Base Instruction Set<a class="headerlink" href="#base-instruction-set" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Capability to generate all legal RV32I instructions using all
+operands.</li>
+<li>Ability to check status of GPRs after instruction execution.</li>
+<li>Ability to check side-effects, most notably underflow/overflow after
+instruction execution.</li>
+</ol>
+</div>
+<div class="section" id="privileged-spec">
+<h2>Privileged Spec<a class="headerlink" href="#privileged-spec" title="Permalink to this headline">¶</a></h2>
+<p>ToDo</p>
+</div>
+<div class="section" id="xpulp-instruction-extensions">
+<h2>XPULP Instruction Extensions<a class="headerlink" href="#xpulp-instruction-extensions" title="Permalink to this headline">¶</a></h2>
+<p>ToDo</p>
+</div>
+<div class="section" id="custom-circuitry">
+<h2>Custom Circuitry<a class="headerlink" href="#custom-circuitry" title="Permalink to this headline">¶</a></h2>
+<p>ToDo</p>
+</div>
+<div class="section" id="interrupts">
+<h2>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h2>
+<p>ToDo</p>
+</div>
+<div class="section" id="debug">
+<h2>Debug<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h2>
+<p>ToDo</p>
+</div>
+<div class="section" id="rvi-compliant-interface">
+<h2>RVI-Compliant Interface<a class="headerlink" href="#rvi-compliant-interface" title="Permalink to this headline">¶</a></h2>
+<p>ToDo</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pulp_verif.html" class="btn btn-neutral float-right" title="PULP-Platform Simulation Verification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, OpenHW Group
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
