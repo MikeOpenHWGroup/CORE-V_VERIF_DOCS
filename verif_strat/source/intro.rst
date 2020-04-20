@@ -173,7 +173,7 @@ and support.
    https://github.com/openhwgroup/core-v-cores.
 
 .. [3]
-   CV64A is not forks of the Ariane. The GitHub repository
+   CV64A is not a fork of the Ariane. The GitHub repository
    https://github.com/pulp-platform/ariane was moved to
    https://github.com/openhwgroup/core-v-cores.
 

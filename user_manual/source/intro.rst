@@ -1,23 +1,25 @@
-RI5CY: User Manual
+Introduction 
+=============
 
-| March 2020
-| Revision 4.4
-| Andreas Traber
-  (`*atraber@iis.ee.ethz.ch* <mailto:atraber@iis.ee.ethz.ch>`__)
+CV32E40P (previously known as RI5CY) is a 4-stage in-order 32b RISC-V
+processor core. The ISA of CV32E40P
+has been extended to support multiple additional instructions including
+hardware loops, post-increment load and store instructions and
+additional ALU instructions that are not part of the standard RISC-V
+ISA.
 
-Michael Gautschi
-(`*gautschi@iis.ee.ethz.ch* <mailto:gautschi@iis.ee.ethz.ch>`__)
+Figure 1 shows a block diagram of the core.
 
-Pasquale Davide Schiavone
-(`*pschiavo@iis.ee.ethz.ch* <mailto:pschiavo@iis.ee.ethz.ch>`__)
+.. figure:: ../images/CV32E40P_Block_Diagram.png
+   :name: cv32e40p block diagram
+   :align: center
+   :alt: 
 
-Arjan Bink (`*arjan.bink@silabs.com* <mailto:arjan.bink@silabs.com>`__)
+   Figuire 1: Block Diagram of CV32E40P RISC-V Core
 
-| Micrel Lab and Multitherman Lab
-| University of Bologna, Italy
-
-| Integrated Systems Lab
-| ETH Zürich, Switzerland
+License
+-------
+Copyright 2020 OpenHW Group.
 
 Copyright 2018 ETH Zurich and University of Bologna.
 
@@ -31,75 +33,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Document Revisions
-
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| **Rev.**   | **Date**   | **Author**         | **Description**                                                                                  |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 0.1        | 25.02.16   | Andreas Traber     | First Draft                                                                                      |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 0.8        | 13.05.16   | Andreas Traber     | Added instruction encoding                                                                       |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 0.9        | 19.05.16   | Michael Gautschi   | Typos and general corrections                                                                    |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.1        | 12.07.16   | P.D. Schiavone     | Removed pv.ball, and replaced with p.beqimm                                                      |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.2        | 14.11.16   | P.D. Schiavone     | Added register variants of clip, addnorm, and bit manipulation instructions                      |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.3        | 04.01.17   | Michael Gautschi   | Fixed typos, references, foot notes and date style                                               |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.4        | 08.03.17   | P.D. Schiavone     | Updated to priv spec 1.9 and new IRQ handling                                                    |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.5        | 06.06.17   | P.D. Schiavone     | General updates                                                                                  |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.6        | 03.07.17   | Michael Gautschi   | Extended with optional FP support                                                                |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.7        | 12.07.17   | P.D. Schiavone     | Revised instructions added in Rev. 1.2                                                           |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.8        | 08.11.17   | P.D. Schiavone     | Add note in HW Loop                                                                              |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 1.9        | 06.02.18   | A. Ruospo          | Fixed CSR reset values and general corrections                                                   |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 2.0        | 08.03.18   | P.D. Schiavone     | Fixed Documentation issue with lp.setupi instruction #29                                         |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 2.1        | 16.05.18   | P.D. Schiavone     | Fixed Documentation issue in Debug                                                               |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 2.2        | 28.06.18   | P.D. Schiavone     | Fixed Nested Exception Support #40                                                               |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 3.0        | 19.12.18   | P.D. Schiavone     | PMP plus priv spec 1.10                                                                          |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 4.0        | 17.04.19   | P.D. Schiavone     | New debug. Change HWLoop addresses                                                               |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 4.1        | 21.08.19   | Robert Balas       | Update PCER and PCMR addresses                                                                   |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 4.2        | 20.12.19   | P.D. Schiavone     | Issue #98, #103, #110, #111                                                                      |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 4.3        | 28.01.20   | P.D. Schiavone     | New HWLoop constraints and issue #209                                                            |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-| 4.4        | 30.03.20   | A. Bink            | Fixed MIEX, MTVECX, MIPX CSR addresses and added description for MIPX, MTVECX, MIEX, MIP, MIE.   |
-+------------+------------+--------------------+--------------------------------------------------------------------------------------------------+
-
-Table of Contents
-
-Introduction 
-=============
-
-RI5CY is a 4-stage in-order 32b RISC-V processor core. The ISA of RI5CY
-was extended to support multiple additional instructions including
-hardware loops, post-increment load and store instructions and
-additional ALU instructions that are not part of the standard RISC-V
-ISA.
-
-Figure 1 shows a block diagram of the core.
-
-|image0|
-
-Figure 1: Block Diagram
 
 Supported Instruction Set
 -------------------------
 
-RI5CY supports the following instructions:
+CV32E40P supports the following instructions:
 
 -  Full support for RV32I Base Integer Instruction Set
 
@@ -137,7 +75,7 @@ classifications.
 ASIC Synthesis
 --------------
 
-ASIC synthesis is supported for RI5CY. The whole design is completely
+ASIC synthesis is supported for CV32E40P. The whole design is completely
 synchronous and uses positive-edge triggered flip-flops, except for the
 register file, which can be implemented either with latches or with
 flip-flops. See Chapter 8 for more details about the register file. The
@@ -148,14 +86,14 @@ FPU, 10kGE additional register file).
 FPGA Synthesis
 --------------
 
-FPGA synthesis is supported for RI5CY when the flip-flop based register
+FPGA synthesis is supported for CV32E40P when the flip-flop based register
 file is used. Since latches are not well supported on FPGAs, it is
 crucial to select the flip-flop based register file.
 
 Outline
 -------
 
-This document summarizes all the functionality of the Ri5CY core in more
+This document summarizes all the functionality of the CV32E40P core in more
 detail. First, the instruction and data interfaces are explained in
 Chapter 2 and 3. The multiplier as well as the ALU are then explained in
 Chapter 4 and 5. Chapter 7 focuses on the hardware loop extensions and
@@ -165,3 +103,75 @@ performance counters. Chapter 12 deals with exceptions and interrupts,
 and Chapter 13 summarizes the accessible debug registers. Finally,
 Chapter 14 gives an overview of all instruction-extensions, its
 encodings and meanings.
+
+Contributors
+============
+| Andreas Traber
+  (`*atraber@iis.ee.ethz.ch* <mailto:atraber@iis.ee.ethz.ch>`__)
+
+Michael Gautschi
+(`*gautschi@iis.ee.ethz.ch* <mailto:gautschi@iis.ee.ethz.ch>`__)
+
+Pasquale Davide Schiavone
+(`*pschiavo@iis.ee.ethz.ch* <mailto:pschiavo@iis.ee.ethz.ch>`__)
+
+Arjan Bink (`*arjan.bink@silabs.com* <mailto:arjan.bink@silabs.com>`__)
+
+| Micrel Lab and Multitherman Lab
+| University of Bologna, Italy
+
+| Integrated Systems Lab
+| ETH Zürich, Switzerland
+
+Document Revisions
+------------------
+
+| March 2020
+| Revision 4.4
+
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| Rev.   | Date       | Author             | Description                                                                                      |
++========+============+====================+==================================================================================================+
+| 0.1    | 25.02.16   | Andreas Traber     | First Draft                                                                                      |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 0.8    | 13.05.16   | Andreas Traber     | Added instruction encoding                                                                       |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 0.9    | 19.05.16   | Michael Gautschi   | Typos and general corrections                                                                    |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.1    | 12.07.16   | P.D. Schiavone     | Removed pv.ball, and replaced with p.beqimm                                                      |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.2    | 14.11.16   | P.D. Schiavone     | Added register variants of clip, addnorm, and bit manipulation instructions                      |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.3    | 04.01.17   | Michael Gautschi   | Fixed typos, references, foot notes and date style                                               |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.4    | 08.03.17   | P.D. Schiavone     | Updated to priv spec 1.9 and new IRQ handling                                                    |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.5    | 06.06.17   | P.D. Schiavone     | General updates                                                                                  |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.6    | 03.07.17   | Michael Gautschi   | Extended with optional FP support                                                                |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.7    | 12.07.17   | P.D. Schiavone     | Revised instructions added in Rev. 1.2                                                           |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.8    | 08.11.17   | P.D. Schiavone     | Add note in HW Loop                                                                              |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 1.9    | 06.02.18   | A. Ruospo          | Fixed CSR reset values and general corrections                                                   |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 2.0    | 08.03.18   | P.D. Schiavone     | Fixed Documentation issue with lp.setupi instruction #29                                         |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 2.1    | 16.05.18   | P.D. Schiavone     | Fixed Documentation issue in Debug                                                               |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 2.2    | 28.06.18   | P.D. Schiavone     | Fixed Nested Exception Support #40                                                               |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 3.0    | 19.12.18   | P.D. Schiavone     | PMP plus priv spec 1.10                                                                          |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 4.0    | 17.04.19   | P.D. Schiavone     | New debug. Change HWLoop addresses                                                               |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 4.1    | 21.08.19   | Robert Balas       | Update PCER and PCMR addresses                                                                   |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 4.2    | 20.12.19   | P.D. Schiavone     | Issue #98, #103, #110, #111                                                                      |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 4.3    | 28.01.20   | P.D. Schiavone     | New HWLoop constraints and issue #209                                                            |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+| 4.4    | 30.03.20   | A. Bink            | Fixed MIEX, MTVECX, MIPX CSR addresses and added description for MIPX, MTVECX, MIEX, MIP, MIE.   |
++--------+------------+--------------------+--------------------------------------------------------------------------------------------------+
+
