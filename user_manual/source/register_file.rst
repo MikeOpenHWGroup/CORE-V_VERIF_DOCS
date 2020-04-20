@@ -1,7 +1,7 @@
 Register File
 =============
 
-RI5CY has 31 \_ 32-bit wide registers which form registers x1 to x31.
+CV32E40P has thirty-one 32-bit wide registers which form registers x1 to x31.
 Register x0 is statically bound to 0 and can only be read, it does not
 contain any sequential logic.
 
@@ -25,17 +25,17 @@ gating cells to keep the clock inactive when the latches are not
 written.
 
 It is assumed that there is a clock gating cell for the target
-technology that is wrapped in a module called cluster\_clock\_gating and
+technology that is wrapped in a module called cluster_clock_gating and
 has the following ports:
 
--  clk\_i: Clock Input
+-  clk_i: Clock Input
 
--  en\_i: Clock Enable Input
+-  en_i: Clock Enable Input
 
--  test\_en\_i: Test Enable Input (activates the clock even though en\_i
+-  test_en_i: Test Enable Input (activates the clock even though en_i
    is not set)
 
--  clk\_o: Gated Clock Output
+-  clk_o: Gated Clock Output
 
 FPU Register File
 -----------------
@@ -45,7 +45,7 @@ with an additional register bank of 32 registers f0-f31. These registers
 are stacked on top of the existing register file and can be accessed
 concurrently with the limitation that a maximum of three operands per
 cycle can be read. Each of the three operands addresses is extended with
-an fp\_reg\_sel signal which is generated in the instruction decoder
+an fp_reg_sel signal which is generated in the instruction decoder
 when a FP instruction is decoded. This additional signals determines if
 the operand is located in the integer or the floating point register
 file.

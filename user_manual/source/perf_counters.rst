@@ -1,7 +1,7 @@
 Performance Counters
 ====================
 
-Performance Counters in RI5CY are placed inside the Control and Status
+Performance Counters in CV32E40P are placed inside the Control and Status
 Registers and can be accessed with csrr and csrw instructions. See Table
 9.1 for the address map of the performance counter registers
 
@@ -198,6 +198,9 @@ access the same register as PCCR0-30.
 Figure 6 shows how events are first masked with the PCER register and
 then ORed together to increase the one performance counter PCCR.
 
-|image5|
+.. figure:: ../images/Events_PCCR_PCMR_PCER.png
+   :name: events and pccr, pcmr and pcer
+   :align: center
+   :alt: 
 
-Figure 6: Events and PCCR, PCMR and PCER on the ASIC.
+   Figure 6: Events and PCCR, PCMR and PCER on the ASIC.

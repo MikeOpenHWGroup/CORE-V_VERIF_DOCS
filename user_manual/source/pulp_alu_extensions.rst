@@ -1,7 +1,7 @@
 PULP ALU Extensions
 ===================
 
-RI5CY supports advanced ALU operations that allow to perform multiple
+CV32E40P supports advanced ALU operations that allow to perform multiple
 instructions that are specified in the base instruction set in one
 single instruction and thus increases efficiency of the core. For
 example, those instructions include zero-/sign-extension instructions

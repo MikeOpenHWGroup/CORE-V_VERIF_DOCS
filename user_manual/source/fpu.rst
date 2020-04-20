@@ -87,7 +87,7 @@ exceptions that occurred since it was last reset and the rounding mode.
 fflags and frm can be accessed directly or over fcsr which is mapped to
 those two registers.
 
-Since RISCY includes an iterative div/sqrt unit, its precision and
+Since CV32E40P includes an iterative div/sqrt unit, its precision and
 latency can be controlled over a custom csr (fprec). This allows faster
 division / square-root operations at the lower precision. By default,
 the single-precision equivalents are computed with a latency of 8

@@ -1,11 +1,11 @@
 Exceptions and Interrupts
 =========================
 
-RI5CY supports interrupts, exceptions on illegal instructions and (if
+CV32E40P supports interrupts, exceptions on illegal instructions and (if
 enabled) on PMP filtered requests on the data and instruction bus.
 
 The base address of the interrupt vector table is given by the mtvec
-address. As RI5CY supports only vectorized interrupts, the interrupt 0
+address. As CV32E40P supports only vectorized interrupts, the interrupt 0
 is reserved for exceptions as illegal instructions, ecall and
 instruction or data prohibited accesses.
 
@@ -34,7 +34,7 @@ Exceptions
 Handling
 --------
 
-RI5CY supports SW-assisted nested interrupt/exception handling.
+CV32E40P supports SW-assisted nested interrupt/exception handling.
 Exceptions inside interrupt/exception handlers cause another exception,
 thus exceptions during the critical part of your exception handlers,
 i.e. before having saved the MEPC and MESTATUS registers, will cause

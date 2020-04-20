@@ -59,23 +59,32 @@ the data\_rdata\_i has no meaning in this case.
 Figure 2, Figure 3 and Figure 4 show example-timing diagrams of the
 protocol.
 
-|image1|
+.. figure:: ../images/Basic_Memory_Transaction.png
+   :name: basic memory transaction
+   :align: center
+   :alt: 
 
-Figure 2: Basic Memory Transaction
+   Figure 2: Basic Memory Transaction
 
-|image2|
+.. figure:: ../images/Back_to_Back_Memory_Transaction.png
+   :name: back to back memory transaction 
+   :align: center
+   :alt: 
 
-Figure 3: Back-to-back Memory Transaction
+   Figure 3: Back-to-back Memory Transaction
 
-|image3|
+.. figure:: ../images/Slow_Response_Memory_Transaction.png
+   :name: slow response memory transaction 
+   :align: center
+   :alt: 
 
-Figure 4: Slow Response Memory Transaction
+   Figure 4: Slow Response Memory Transaction
 
 Physical Memory Protection (PMP) Unit
 -------------------------------------
 
-The RI5CY core has a PMP module which can be enabled by setting the
-parameter PULP\_SECURE=1 which also enabled the core to possibly run in
+The CV32E40P core has a PMP module which can be enabled by setting the
+parameter PULP_SECURE=1 which also enabled the core to possibly run in
 USER MODE. Such unit has a configurable number of entries (up to 16) and
 supports all the modes as TOR, NAPOT and NA4. Every fetch, load and
 store access executed in USER MODE are first filtered by the PMP unit
